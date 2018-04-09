@@ -42,8 +42,13 @@ $route['live-count'] = 'vote/livecount';
 $route['live-count-fakultas'] = 'vote/livecountfakultas';
 // $route['live-count-fakultas'] = 'vote/waitlivecount';
 // $route['live-count'] = 'vote/waitlivecount';
+
 $route['statistik-fakultas'] = 'vote/statfakultas';
 $route['statistik-pemilih'] = 'vote/stat';
 $route['suara-masuk'] = 'vote/pemilihan';
 $route['pemilihan/delete'] = 'vote/destroy';
+
 $route['laporan'] = 'laporan/index';
+$route['laporan-operator'] = 'laporan/operator';
+// $route['laporan'] = 'laporan/waitlaporan';
+// $route['laporan-operator'] = 'laporan/waitlaporan';
