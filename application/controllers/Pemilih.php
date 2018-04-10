@@ -6,6 +6,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
     public function __construct(){
       parent::__construct();
       $this->load->model('Pemilih_model', 'pemilih', TRUE);
+      $this->load->library('pagination');
 
       // Hanya bisa diakses Operator, Dekan, Rektor
       if($this->session->has_userdata('nim')) redirect('');
@@ -13,7 +14,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
     }
 
     // Halaman Utama Pemilih
-    public function index(){
+    public function index($page = null){
       if($this->session->has_userdata('admin')) redirect('');
       if($this->session->has_userdata('dekan')) redirect('');
       if($this->session->has_userdata('rektor')) redirect('');
@@ -28,28 +29,88 @@ defined('BASEPATH') OR exit('No direct script access allowed');
       elseif($this->session->userdata('hak_akses') === 'operator-fik') $fakultas = 'Ilmu Kelautan';
       elseif($this->session->userdata('hak_akses') === 'operator-mipa') $fakultas = 'MIPA';
 
-      $pemilihs = $this->pemilih->allPemilih($fakultas);
+      $perPage = 25;
+      if($page === null) $offset = 0;
+      else $offset = ($page * $perPage) - $perPage;
+
+      $pemilihs = $this->pemilih->allPemilih($fakultas, $perPage, $offset);
       $jumlahPemilih = $this->pemilih->jumlahPemilih($fakultas);
-      $belumMemilihs = $this->pemilih->allPemilihBelumMemilih($fakultas);
+      $belumMemilihs = $this->pemilih->allPemilihBelumMemilih($fakultas, $perPage, $offset);
       $jumlahBelumPemilih = $this->pemilih->jumlahBelumPemilih($fakultas);
       $fakultass = $this->pemilih->allFakultas();
       $input = (object) $this->pemilih->pemilihDefaultValues();
+
+      $config['base_url'] = base_url('pemilih');
+      $config['total_rows'] = $jumlahPemilih;
+      $config['per_page'] = $perPage;
+      $config['use_page_numbers'] = true;
+      $config['next_link'] = 'Selanjutnya';
+      $config['prev_link'] = 'Sebelumnya';
+      $config['first_link'] = 'Pertama';
+      $config['last_link'] = 'Terakhir';
+      $config['num_links'] = '2';
+      $config['first_tag_open'] = '<li>';
+      $config['first_tag_close'] = '</li>';
+      $config['last_tag_open'] = "<li class='page-item'>";
+      $config['last_tag_close'] = '</li>';
+      $config['next_tag_open'] = "<li class='page-item'>";
+      $config['next_tag_close'] = '</li>';
+      $config['prev_tag_open'] = "<li class='page-item'>";
+      $config['prev_tag_close'] = '</li>';
+      $config['cur_tag_open'] = "<li class='page-item'><span class='page-link'>";
+      $config['cur_tag_close'] = "<span class='sr-only'>(current)</span></span></li>";
+      $config['num_tag_open'] = "<li class='page-item'>";
+      $config['num_tag_close'] = '</li>';
+      $config['attributes'] = array('class' => 'page-item');
+      $this->pagination->initialize($config);
+      $pagination = $this->pagination->create_links();
+
       $main_view = 'bem/pemilih';
-      $this->load->view('template', compact('main_view', 'pemilihs', 'input', 'fakultass', 'belumMemilihs', 'pemilihFakultass', 'jumlahPemilih', 'jumlahBelumPemilih'));
+      $this->load->view('template', compact('main_view', 'pemilihs', 'input', 'fakultass', 'belumMemilihs', 'pemilihFakultass', 'jumlahPemilih', 'jumlahBelumPemilih', 'pagination'));
     }
 
     // Halaman Pemilih untuk Admin, Dekan, Rektor
-    public function pemilihadmin(){
+    public function pemilihadmin($page = null){
       if($this->session->has_userdata('operator')) redirect('');
 
-      $pemilihs = $this->pemilih->allPemilihAdmin();
+      $perPage = 25;
+      if($page === null) $offset = 0;
+      else $offset = ($page * $perPage) - $perPage;
+
+      $pemilihs = $this->pemilih->allPemilihAdmin($perPage, $offset);
       $totalPemilihAdmin = $this->pemilih->totalPemilihAdmin();
-      $belumMemilihs = $this->pemilih->allPemilihBelumMemilihAdmin();
+      $belumMemilihs = $this->pemilih->allPemilihBelumMemilihAdmin($perPage, $offset);
       $totalPemilihBelumMemilihAdmin = $this->pemilih->totalPemilihBelumMemilihAdmin();
       $fakultass = $this->pemilih->allFakultas();
       $input = (object) $this->pemilih->pemilihDefaultValues();
+
+      $config['base_url'] = base_url('pemilih-admin');
+      $config['total_rows'] = $totalPemilihAdmin;
+      $config['per_page'] = $perPage;
+      $config['use_page_numbers'] = true;
+      $config['next_link'] = 'Selanjutnya';
+      $config['prev_link'] = 'Sebelumnya';
+      $config['first_link'] = 'Pertama';
+      $config['last_link'] = 'Terakhir';
+      $config['num_links'] = '2';
+      $config['first_tag_open'] = '<li>';
+      $config['first_tag_close'] = '</li>';
+      $config['last_tag_open'] = "<li class='page-item'>";
+      $config['last_tag_close'] = '</li>';
+      $config['next_tag_open'] = "<li class='page-item'>";
+      $config['next_tag_close'] = '</li>';
+      $config['prev_tag_open'] = "<li class='page-item'>";
+      $config['prev_tag_close'] = '</li>';
+      $config['cur_tag_open'] = "<li class='page-item'><span class='page-link'>";
+      $config['cur_tag_close'] = "<span class='sr-only'>(current)</span></span></li>";
+      $config['num_tag_open'] = "<li class='page-item'>";
+      $config['num_tag_close'] = '</li>';
+      $config['attributes'] = array('class' => 'page-item');
+      $this->pagination->initialize($config);
+      $pagination = $this->pagination->create_links();
+
       $main_view = 'bem/pemilih-admin';
-      $this->load->view('template', compact('main_view', 'pemilihs', 'input', 'fakultass', 'belumMemilihs', 'pemilihFakultass', 'totalPemilihAdmin', 'totalPemilihBelumMemilihAdmin'));
+      $this->load->view('template', compact('main_view', 'pemilihs', 'input', 'fakultass', 'belumMemilihs', 'pemilihFakultass', 'totalPemilihAdmin', 'totalPemilihBelumMemilihAdmin', 'pagination'));
     }
 
     // Tambah Pemilih

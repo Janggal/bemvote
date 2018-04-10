@@ -96,9 +96,15 @@
 							</tr>
             <?php endforeach ?>
 						</table>
+
+            <nav style="width:100%;text-align:center">
+            <ul class="pagination text-center" style="margin:0 auto">
+              <?= $pagination ?>
+            </ul>
+            </nav>
+
 					</div>
 				</div>
-
       </div>
 
         <div class="panel panel-default ">
@@ -141,6 +147,14 @@
 							</tr>
             <?php endforeach ?>
 						</table>
+
+            <nav style="width:100%;text-align:center">
+            <ul class="pagination text-center" style="margin:0 auto">
+              <?= $pagination ?>
+            </ul>
+            </nav>
+            
+
 					</div>
 				</div>
 

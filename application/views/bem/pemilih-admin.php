@@ -89,6 +89,14 @@
 							</tr>
             <?php endforeach ?>
 						</table>
+
+            <nav style="width:100%;text-align:center">
+            <ul class="pagination text-center" style="margin:0 auto">
+              <?= $pagination ?>
+            </ul>
+            </nav>
+
+
 					</div>
 				</div>
 
@@ -127,6 +135,14 @@
 							</tr>
             <?php endforeach ?>
 						</table>
+
+            <nav style="width:100%;text-align:center">
+            <ul class="pagination text-center" style="margin:0 auto">
+              <?= $pagination ?>
+            </ul>
+            </nav>
+
+
 					</div>
 				</div>
 

@@ -4,8 +4,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
   class Pemilih_model extends CI_Model{
 
     // Semua data pemilih
-    public function allPemilih($fakultas){
-      return $this->db->select('*')->from('pemilih')->join('fakultas','pemilih.id_fakultas = fakultas.id_fakultas')->where('nama_fakultas', $fakultas)->order_by('nim_pemilih', 'ASC')->get()->result();
+    public function allPemilih($fakultas, $perPage = 25, $offset = 0){
+      return $this->db->select('*')->from('pemilih')->join('fakultas','pemilih.id_fakultas = fakultas.id_fakultas')->where('nama_fakultas', $fakultas)->limit($perPage, $offset)->order_by('nim_pemilih', 'ASC')->get()->result();
     }
 
     // Total pemilih
@@ -18,13 +18,13 @@ defined('BASEPATH') OR exit('No direct script access allowed');
     }
 
     // Semua data pemilih yang belum memilih
-    public function allPemilihBelumMemilih($fakultas){
-      return $this->db->select('*')->from('pemilih')->join('fakultas','pemilih.id_fakultas = fakultas.id_fakultas')->where('pemilih.status_pemilih', 'tidak')->where('nama_fakultas', $fakultas)->get()->result();
+    public function allPemilihBelumMemilih($fakultas, $perPage = 25, $offset = 0){
+      return $this->db->select('*')->from('pemilih')->join('fakultas','pemilih.id_fakultas = fakultas.id_fakultas')->where('pemilih.status_pemilih', 'tidak')->where('nama_fakultas', $fakultas)->limit($perPage, $offset)->get()->result();
     }
 
     // Semua data pemilih yg bisa diakses admin, dekan, rektor
-    public function allPemilihAdmin(){
-      return $this->db->select('*')->from('pemilih')->join('fakultas','pemilih.id_fakultas = fakultas.id_fakultas')->order_by('nim_pemilih', 'ASC')->get()->result();
+    public function allPemilihAdmin($perPage = 25, $offset = 0){
+      return $this->db->select('*')->from('pemilih')->join('fakultas','pemilih.id_fakultas = fakultas.id_fakultas')->limit($perPage, $offset)->order_by('nim_pemilih', 'ASC')->get()->result();
     }
 
     public function totalPemilihAdmin(){
@@ -32,8 +32,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
     }
 
     // Semua data pemilih yang belum memilih
-    public function allPemilihBelumMemilihAdmin(){
-      return $this->db->select('*')->from('pemilih')->join('fakultas','pemilih.id_fakultas = fakultas.id_fakultas')->where('pemilih.status_pemilih', 'tidak')->get()->result();
+    public function allPemilihBelumMemilihAdmin($perPage = 25, $offset = 0){
+      return $this->db->select('*')->from('pemilih')->join('fakultas','pemilih.id_fakultas = fakultas.id_fakultas')->where('pemilih.status_pemilih', 'tidak')->limit($perPage, $offset)->get()->result();
     }
 
     public function totalPemilihBelumMemilihAdmin(){
