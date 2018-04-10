@@ -41,19 +41,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
       $this->load->view('template', compact('main_view', 'suaraMasuks', 'totalSuaraMasuk'));
     }
 
-    // Hapus Pemilihan
-    public function destroy(){
-      if(!$this->cekLoginAdmin()) redirect('');
-      if(!$this->input->post('id_pemilihan', TRUE)) redirect('pemilihan');
-      $id_pemilihan = $this->input->post('id_pemilihan', TRUE);
-      $id_pemilih = $this->input->post('id_pemilih', TRUE);
-      if($this->vote->deleteSuaraMasuk($id_pemilihan)){
-        $this->vote->setKembaliPemilih($id_pemilih);
-        $this->session->set_flashdata('msg', 'Suara Masuk Pemilih Berhasil Di Hapus!');
-        redirect('suara-masuk');
-      }
-    }
-
     // Fitur Statistik Pemilihan
     public function stat(){
       if($this->session->has_userdata('nim')) redirect('');

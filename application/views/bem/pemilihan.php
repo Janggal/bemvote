@@ -31,9 +31,6 @@
 								<th>Nama Pemilih</th>
                 <th>Fakultas Pemilih</th>
 								<th>Waktu Memilih</th>
-              <?php if($this->session->has_userdata('admin')): ?>
-								<th>Action</th>
-              <?php endif ?>
 							</tr>
               <?php
                 $i = 1;
@@ -45,15 +42,6 @@
 								<td><?= $pemilih->nama_pemilih ?></td>
 								<td class="fakultas"><?= $pemilih->nama_fakultas ?></td>
 								<td><?= $pemilih->waktu_memilih ?></td>
-                <?php if($this->session->has_userdata('admin')): ?>
-								<td>
-                  <?= form_open('pemilihan/delete') ?>
-                    <input type="hidden" name="id_pemilihan" value="<?= $pemilih->id_pemilihan ?>">
-                    <input type="hidden" name="id_pemilih" value="<?= $pemilih->id_pemilih ?>">
-                    <input type="submit" value="Hapus" class="btn btn-danger pull-left" style="color:white;">
-                  <?= form_close() ?>
-								</td>
-              <?php endif ?>
 							</tr>
             <?php endforeach ?>
 						</table>
