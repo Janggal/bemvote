@@ -73,6 +73,11 @@
 			}, 1000);
 		});
 
+		$(document).bind("contextmenu", function(e){
+			alert("Oops.. Jangan Tekan Itu...");
+			return false;
+		});
+
 	});
 	</script>
 

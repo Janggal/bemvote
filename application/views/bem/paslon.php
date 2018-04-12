@@ -18,7 +18,6 @@
 		<div class="row">
 			<div class="col-md-12">
 				<div class="panel panel-default ">
-          Paslon
 					<div class="panel-heading">
 						<span class="pull-right clickable panel-toggle panel-button-tab-left"><em class="fa fa-toggle-up"></em></span>
 					</div>
