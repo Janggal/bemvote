@@ -18,8 +18,8 @@
 		<div class="row">
 			<div class="col-md-12">
 				<div class="panel panel-default ">
+          Paslon
 					<div class="panel-heading">
-						Paslon
 						<span class="pull-right clickable panel-toggle panel-button-tab-left"><em class="fa fa-toggle-up"></em></span>
 					</div>
 					<div class="panel-body timeline-container">
@@ -66,7 +66,7 @@
 						Tambah Paslon
 						<span class="pull-right clickable panel-toggle panel-button-tab-left"><em class="fa fa-toggle-up"></em></span></div>
 					<div class="panel-body">
-              <?= form_open('paslon/post', ['class' => 'form-horizontal']) ?>
+              <?= form_open_multipart('paslon/post', ['class' => 'form-horizontal']) ?>
                 <?= validation_errors() ?>
 								<!-- Name input-->
 								<div class="form-group">
@@ -160,6 +160,18 @@
 									<label class="col-md-3 control-label" for="name">Angkatan Cawapres</label>
 									<div class="col-md-9">
                     <?= form_input('angkatan_cawapres', $input->angkatan_cawapres, ['class' => 'form-control', 'placeholder' => '2017']) ?>
+									</div>
+								</div>
+                <div class="form-group">
+									<label class="col-md-3 control-label" for="name">Foto Capres</label>
+									<div class="col-md-9">
+                    <input type="file" name="gambar_capres" class="form-control-file">
+									</div>
+								</div>
+                <div class="form-group">
+									<label class="col-md-3 control-label" for="name">Foto Cawapres</label>
+									<div class="col-md-9">
+                    <input type="file" name="gambar_cawapres" class="form-control-file">
 									</div>
 								</div>
 

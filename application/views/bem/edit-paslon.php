@@ -21,7 +21,7 @@
 						Edit Paslon
 						<span class="pull-right clickable panel-toggle panel-button-tab-left"><em class="fa fa-toggle-up"></em></span></div>
 					<div class="panel-body">
-              <?= form_open('paslon/patch', ['class' => 'form-horizontal']) ?>
+              <?= form_open_multipart('paslon/patch', ['class' => 'form-horizontal']) ?>
 						     <?= validation_errors() ?>
 						     <?= form_hidden('id_paslon', $paslon->id_paslon) ?>
 								<!-- Name input-->
@@ -116,6 +116,19 @@
 									<label class="col-md-3 control-label" for="name">Angkatan Cawapres</label>
 									<div class="col-md-9">
                     <?= form_input('angkatan_cawapres', $paslon->angkatan_cawapres, ['class' => 'form-control']) ?>
+									</div>
+								</div>
+
+                <div class="form-group">
+									<label class="col-md-3 control-label" for="name">Foto Capres</label>
+									<div class="col-md-9">
+                    <input type="file" name="gambar_capres" class="form-control-file">
+									</div>
+								</div>
+                <div class="form-group">
+									<label class="col-md-3 control-label" for="name">Foto Cawapres</label>
+									<div class="col-md-9">
+                    <input type="file" name="gambar_cawapres" class="form-control-file">
 									</div>
 								</div>
 

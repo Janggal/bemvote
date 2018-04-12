@@ -6,6 +6,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
     public function __construct(){
       parent::__construct();
       $this->load->model('Vote_model', 'vote', TRUE);
+      $this->load->model('Paslon_model', 'paslon', TRUE);
     }
 
     // Fitur Mencoblos
@@ -27,8 +28,10 @@ defined('BASEPATH') OR exit('No direct script access allowed');
         redirect('');
       }else{
         $paslons = $this->vote->allPaslon();
+        $capress = $this->paslon->allCapres();
+        $cawapress = $this->paslon->allCawapres();
         $main_view = 'bem/index';
-        $this->load->view('template', compact('main_view', 'paslons'));
+        $this->load->view('template', compact('main_view', 'paslons', 'capress', 'cawapress'));
       }
     }
 

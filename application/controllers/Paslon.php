@@ -52,6 +52,21 @@ defined('BASEPATH') OR exit('No direct script access allowed');
       $capres['prodi_capres'] = $input->prodi_capres;
       $capres['angkatan_capres'] = $input->angkatan_capres;
       $capres['id_paslon'] = $pas->id_paslon;
+      $config = [
+          'upload_path' => './assets/img',
+          'allowed_types' => 'jpg|gif|png',
+          'max_size' => '5000'
+        ];
+        $this->load->library('upload', $config);
+        if(!$this->upload->do_upload('gambar_capres')){
+          $this->session->set_flashdata('msg', 'Upload wajib diisi <br> Hanya boleh mengupload JPG, PNG, GIF <br> Ukuran File max 4MB');
+          $paslons = $this->paslon->allPaslon();
+          $errors = $this->upload->display_errors();
+          $main_view = "bem/paslon";
+          $this->load->view('template', compact('main_view', 'paslons', 'input', 'errors'));
+          return;
+        }
+      $capres['gambar_capres'] = $this->upload->data('file_name');
       $this->paslon->insertCapres($capres);
 
       $cawapres['nama_cawapres'] = $input->nama_cawapres;
@@ -60,6 +75,21 @@ defined('BASEPATH') OR exit('No direct script access allowed');
       $cawapres['prodi_cawapres'] = $input->prodi_cawapres;
       $cawapres['angkatan_cawapres'] = $input->angkatan_cawapres;
       $cawapres['id_paslon'] = $pas->id_paslon;
+      $config = [
+          'upload_path' => './assets/img',
+          'allowed_types' => 'jpg|gif|png',
+          'max_size' => '5000'
+        ];
+        $this->load->library('upload', $config);
+        if(!$this->upload->do_upload('gambar_cawapres')){
+          $this->session->set_flashdata('msg', 'Upload wajib diisi <br> Hanya boleh mengupload JPG, PNG, GIF <br> Ukuran File max 4MB');
+          $paslons = $this->paslon->allPaslon();
+          $errors = $this->upload->display_errors();
+          $main_view = "bem/paslon";
+          $this->load->view('template', compact('main_view', 'paslons', 'input', 'errors'));
+          return;
+        }
+      $cawapres['gambar_cawapres'] = $this->upload->data('file_name');
       $this->paslon->insertCawapres($cawapres);
 
       $this->session->set_flashdata('msg', 'Paslon Berhasil Di Tambahkan!');
@@ -93,12 +123,30 @@ defined('BASEPATH') OR exit('No direct script access allowed');
       $capres['jurusan_capres'] = $this->input->post('jurusan_capres', TRUE);
       $capres['prodi_capres'] = $this->input->post('prodi_capres', TRUE);
       $capres['angkatan_capres'] = $this->input->post('angkatan_capres', TRUE);
+      $config = [
+          'upload_path' => './assets/img',
+          'allowed_types' => 'jpg|gif|png',
+          'max_size' => '5000'
+      ];
+      $this->load->library('upload', $config);
+      if($this->upload->do_upload('gambar_capres')){
+        $capres['gambar_capres'] = $this->upload->data('file_name');
+      }
 
       $cawapres['nama_cawapres'] = $this->input->post('nama_cawapres', TRUE);
       $cawapres['fakultas_cawapres'] = $this->input->post('fakultas_cawapres', TRUE);
       $cawapres['jurusan_cawapres'] = $this->input->post('jurusan_cawapres', TRUE);
       $cawapres['prodi_cawapres'] = $this->input->post('prodi_cawapres', TRUE);
       $cawapres['angkatan_cawapres'] = $this->input->post('angkatan_cawapres', TRUE);
+      $config = [
+          'upload_path' => './assets/img',
+          'allowed_types' => 'jpg|gif|png',
+          'max_size' => '5000'
+      ];
+      $this->load->library('upload', $config);
+      if($this->upload->do_upload('gambar_cawapres')){
+        $capres['gambar_cawapres'] = $this->upload->data('file_name');
+      }
 
       if(!$this->paslon->validationPaslon()){
         $paslon = (object) $paslon;
@@ -106,6 +154,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
         $this->load->view('template', compact('main_view', 'paslon'));
         return;
       }
+
       $this->paslon->updatePaslon($id_paslon, $pas);
       $this->paslon->updateCapres($id_paslon, $capres);
       $this->paslon->updateCawapres($id_paslon, $cawapres);

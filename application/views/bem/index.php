@@ -21,6 +21,10 @@
 				<div class="col-xs-12 col-md-12 col-lg-6 no-padding">
 					<div class="panel panel-teal panel-widget border-right">
 						<div class="row no-padding">
+							<div class="image">
+								<img src="<?= base_url('assets/img/'.$paslon->gambar_capres) ?>" style="width:150px;border-radius:50%;">
+								<img src="<?= base_url('assets/img/'.$paslon->gambar_cawapres) ?>" style="width:150px;border-radius:50%;">
+							</div>
 							<div class="large"><?= $paslon->nomor_urut ?></div>
 							<h2><?= $paslon->nama_paslon ?></h2>
 							<h4><strong><?= $paslon->fakultas_koalisi ?></strong></h4>

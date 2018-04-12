@@ -68,6 +68,10 @@
 							<dt>Visi Misi</dt>
               <dd><strong><?= $paslon->visimisi ?></strong></dd>
 							<br>
+              <dt>Gambar</dt>
+              <dd><strong> <img src="<?= base_url('assets/img/'.$paslon->gambar_capres) ?>" style="width:150px; border-radius:50%">
+              <img src="<?= base_url('assets/img/'.$paslon->gambar_cawapres) ?>" style="width:150px; border-radius:50%"></strong></dd>
+							<br>
             </dl>
 					</div>
 				</div>

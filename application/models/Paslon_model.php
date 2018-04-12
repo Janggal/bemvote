@@ -13,6 +13,14 @@ defined('BASEPATH') OR exit('No direct script access allowed');
       return $this->db->get('paslon')->result();
     }
 
+    public function allCapres(){
+      return $this->db->get('detail_capres')->result();
+    }
+
+    public function allCawapres(){
+      return $this->db->get('detail_cawapres')->result();
+    }
+
     // Mendapatkan data suatu paslon berdasarkan nama paslon
     public function getPaslonByName($name){
       return $this->db->where('nama_paslon', $name)->get('paslon')->row();

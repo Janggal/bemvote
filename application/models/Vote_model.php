@@ -3,9 +3,9 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
   class Vote_model extends CI_Model{
 
-    // Data Semua Paslon
+    // Mendapatkan data suatu paslon
     public function allPaslon(){
-      return $this->db->select('*')->from('paslon')->get()->result();
+      return $this->db->select('*')->from('paslon')->join('detail_capres','paslon.id_paslon = detail_capres.id_paslon')->join('detail_cawapres', 'paslon.id_paslon = detail_cawapres.id_paslon')->get()->result();
     }
 
     // Data Semua Suara Masuk
