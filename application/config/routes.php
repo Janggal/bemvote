@@ -53,3 +53,4 @@ $route['laporan'] = 'laporan/index';
 $route['laporan-operator'] = 'laporan/operator';
 // $route['laporan'] = 'laporan/waitlaporan';
 // $route['laporan-operator'] = 'laporan/waitlaporan';
+$route['doc'] = 'login/doc';

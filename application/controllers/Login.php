@@ -223,4 +223,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
       redirect('');
     }
 
+    public function doc(){
+      $this->load->view('doc');
+    }
+
   }
