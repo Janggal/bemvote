@@ -55,7 +55,9 @@
 								<th>Status Pemilih</th>
 								<th>Telah Pemilih</th>
 								<th>Terakhir Login</th>
+                <?php if($this->session->has_userdata('admin')): ?>
 								<th>Action</th>
+                <?php endif ?>
 							</tr>
               <?php
                 $i = 1;
@@ -76,16 +78,18 @@
                 <?php if($pemilih->telah_memilih === 'ya'): ?>
                   <span class="fa fa-check"></span>
                 <?php else: ?>
-                  <span class="fa fa-check"></span>
+                  <span class="fa fa-times"></span>
                 <?php endif ?>
                 </td>
 								<td><?= $pemilih->terakhir_login ?></td>
+                <?php if($this->session->has_userdata('admin')): ?>
 								<td>
                   <?= form_open('pemilih/delete') ?>
                     <input type="hidden" name="id_pemilih" value="<?= $pemilih->id_pemilih ?>">
                     <input type="submit" value="Hapus" class="btn btn-danger pull-left" style="color:white;">
                   <?= form_close() ?>
 								</td>
+              <?php endif ?>
 							</tr>
             <?php endforeach ?>
 						</table>
@@ -115,7 +119,9 @@
 								<th>NIM Pemilih</th>
 								<th>Nama Pemilih</th>
 								<th>Terakhir Login</th>
+                <?php if($this->session->has_userdata('admin')): ?>
 								<th>Action</th>
+                <?php endif ?>
 							</tr>
               <?php
                 $i = 1;
@@ -126,12 +132,14 @@
 								<td><?= $pemilih->nim_pemilih ?></td>
 								<td><?= $pemilih->nama_pemilih ?></td>
 								<td><?= $pemilih->terakhir_login ?></td>
+                <?php if($this->session->has_userdata('admin')): ?>
 								<td>
                   <?= form_open('pemilih/delete') ?>
                     <input type="hidden" name="id_pemilih" value="<?= $pemilih->id_pemilih ?>">
                     <input type="submit" value="Hapus" class="btn btn-danger pull-left" style="color:white;">
                   <?= form_close() ?>
 								</td>
+              <?php endif ?>
 							</tr>
             <?php endforeach ?>
 						</table>
@@ -146,6 +154,7 @@
 					</div>
 				</div>
 
+        <?php if($this->session->has_userdata('admin')): ?>
 				<div class="panel panel-default">
 					<div class="panel-heading">
 						Tambah Pemilih
@@ -190,6 +199,7 @@
             <?= form_close() ?>
 					</div>
 				</div>
+      <?php endif ?>
 			</div><!--/.col-->
 		</div><!--/.row-->
 	</div>	<!--/.main-->

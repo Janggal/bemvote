@@ -14,12 +14,12 @@ defined('BASEPATH') OR exit('No direct script access allowed');
     }
 
     public function jumlahBelumPemilih($fakultas){
-      return $this->db->select('*')->from('pemilih')->join('fakultas','pemilih.id_fakultas = fakultas.id_fakultas')->where('pemilih.status_pemilih', 'tidak')->where('nama_fakultas', $fakultas)->get()->num_rows();
+      return $this->db->select('*')->from('pemilih')->join('fakultas','pemilih.id_fakultas = fakultas.id_fakultas')->where('pemilih.telah_memilih', 'tidak')->where('nama_fakultas', $fakultas)->get()->num_rows();
     }
 
     // Semua data pemilih yang belum memilih
     public function allPemilihBelumMemilih($fakultas, $perPage = 25, $offset = 0){
-      return $this->db->select('*')->from('pemilih')->join('fakultas','pemilih.id_fakultas = fakultas.id_fakultas')->where('pemilih.status_pemilih', 'tidak')->where('nama_fakultas', $fakultas)->limit($perPage, $offset)->get()->result();
+      return $this->db->select('*')->from('pemilih')->join('fakultas','pemilih.id_fakultas = fakultas.id_fakultas')->where('pemilih.telah_memilih', 'tidak')->where('nama_fakultas', $fakultas)->limit($perPage, $offset)->get()->result();
     }
 
     // Semua data pemilih yg bisa diakses admin, dekan, rektor
@@ -33,11 +33,11 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
     // Semua data pemilih yang belum memilih
     public function allPemilihBelumMemilihAdmin($perPage = 25, $offset = 0){
-      return $this->db->select('*')->from('pemilih')->join('fakultas','pemilih.id_fakultas = fakultas.id_fakultas')->where('pemilih.status_pemilih', 'tidak')->limit($perPage, $offset)->get()->result();
+      return $this->db->select('*')->from('pemilih')->join('fakultas','pemilih.id_fakultas = fakultas.id_fakultas')->where('pemilih.telah_memilih', 'tidak')->limit($perPage, $offset)->get()->result();
     }
 
     public function totalPemilihBelumMemilihAdmin(){
-      return $this->db->select('*')->from('pemilih')->join('fakultas','pemilih.id_fakultas = fakultas.id_fakultas')->where('pemilih.status_pemilih', 'tidak')->get()->num_rows();
+      return $this->db->select('*')->from('pemilih')->join('fakultas','pemilih.id_fakultas = fakultas.id_fakultas')->where('pemilih.telah_memilih', 'tidak')->get()->num_rows();
     }
 
     // Data Semua Fakultas

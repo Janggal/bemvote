@@ -74,7 +74,7 @@
                 </td>
 								<td class="status">
                 <?php if($pemilih->telah_memilih === 'ya'): ?>
-                  <span class="fa fa-check text-center"></span>
+                  <span class="fa fa-check"></span>
                 <?php else: ?>
                   <span class="fa fa-times"></span>
                 <?php endif ?>
@@ -153,7 +153,7 @@
               <?= $pagination ?>
             </ul>
             </nav>
-            
+
 
 					</div>
 				</div>
